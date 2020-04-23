@@ -2,12 +2,9 @@ package ru.javaops.masterjava.xml.util;
 
 import com.google.common.io.Resources;
 import org.junit.Test;
-import ru.javaops.masterjava.xml.schema.CityType;
+import ru.javaops.masterjava.xml.schema.City;
 import ru.javaops.masterjava.xml.schema.ObjectFactory;
 import ru.javaops.masterjava.xml.schema.Payload;
-
-import javax.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
 
 public class JaxbParserTest {
     private static final JaxbParser JAXB_PARSER = new JaxbParser(ObjectFactory.class);
@@ -18,7 +15,6 @@ public class JaxbParserTest {
 
     @Test
     public void testPayload() throws Exception {
-//        JaxbParserTest.class.getResourceAsStream("/city.xml")
         Payload payload = JAXB_PARSER.unmarshal(
                 Resources.getResource("payload.xml").openStream());
         String strPayload = JAXB_PARSER.marshal(payload);
@@ -28,12 +24,9 @@ public class JaxbParserTest {
 
     @Test
     public void testCity() throws Exception {
-        JAXBElement<CityType> cityElement = JAXB_PARSER.unmarshal(
+        City city = JAXB_PARSER.unmarshal(
                 Resources.getResource("city.xml").openStream());
-        CityType city = cityElement.getValue();
-        JAXBElement<CityType> cityElement2 =
-                new JAXBElement<>(new QName("http://javaops.ru", "City"), CityType.class, city);
-        String strCity = JAXB_PARSER.marshal(cityElement2);
+        String strCity = JAXB_PARSER.marshal(city);
         JAXB_PARSER.validate(strCity);
         System.out.println(strCity);
     }
