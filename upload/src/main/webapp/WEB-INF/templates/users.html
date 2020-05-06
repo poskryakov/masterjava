@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MasterJava XML upload</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+</head>
+<body>
+    <h1>Users for project: <span th:text="${project}">Some Project</span></h1>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Flag</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.value}">FirstName LastName</td>
+                <td th:text="${user.email}">User's email</td>
+                <td th:text="${user.flag}">User's flag</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

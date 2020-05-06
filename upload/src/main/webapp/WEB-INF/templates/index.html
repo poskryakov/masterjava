@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MasterJava XML upload</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+</head>
+<body>
+    <h1>MasterJava XML upload</h1>
+    <p>
+        Testing Thymeleaf expressions. Today is:
+        <span th:with="df=#{date.format}" th:text="${#calendars.format(today,df)}">
+            13 February 2011
+        </span>
+    </p>
+    <p>Please select a file using the form below and then submit it.
+        The server will read the request body and then respond with the
+        list of users uploaded (name/email/flag).</p>
+    <form method="POST" enctype="multipart/form-data" action="xmlusers" th:action="@{/xmlusers}">
+<!--        <p><textarea name="data" rows="5" cols="60" ></textarea></p>-->
+        <p>XML file:</p>
+        <p><input name="xml" type="file" /></p>
+        <p>Project name:</p>
+        <p><input name="project" type="text"/></p>
+        <p><input type="submit" value="Submit" /></p>
+    </form>
+</body>
+</html>
